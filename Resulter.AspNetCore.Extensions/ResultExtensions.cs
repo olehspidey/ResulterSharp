@@ -11,7 +11,7 @@
         {
             if (result.IsFailure(out var failureResult))
             {
-                return new BadRequestObjectResult(failureResult.Messages);
+                return new BadRequestObjectResult(failureResult.ErrorMessages);
             }
 
             return new OkResult();
@@ -21,7 +21,7 @@
         {
             if (result.IsFailure(out var failureResult))
             {
-                return new BadRequestObjectResult(failureResult.Messages);
+                return new BadRequestObjectResult(failureResult.ErrorMessages);
             }
 
             if (result.IsSuccessful(out var data))
@@ -36,7 +36,7 @@
         {
             if (result.IsFailure(out var failureResult))
             {
-                return new BadRequestObjectResult(failureResult.Messages);
+                return new BadRequestObjectResult(failureResult.ErrorMessages);
             }
 
             return new OkResult();
@@ -46,7 +46,7 @@
         {
             if (result.IsFailure(out var failureResult))
             {
-                return new BadRequestObjectResult(failureResult.Messages);
+                return new BadRequestObjectResult(failureResult.ErrorMessages);
             }
 
             if (result.IsSuccessful(out var data))
@@ -61,7 +61,7 @@
         {
             if (result.IsFailure(out var failureResult))
             {
-                return new BadRequestObjectResult(failureResult.Messages);
+                return new BadRequestObjectResult(failureResult.ErrorMessages);
             }
 
             return new OkResult();
@@ -71,7 +71,7 @@
         {
             if (result.IsFailure(out var failureResult))
             {
-                return new BadRequestObjectResult(failureResult.Messages);
+                return new BadRequestObjectResult(failureResult.ErrorMessages);
             }
 
             if (result.IsSuccessful(out var data))

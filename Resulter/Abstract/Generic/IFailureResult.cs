@@ -5,6 +5,6 @@
 
     public interface IFailureResult<out TMessage> : IExceptionResult
     {
-        IReadOnlyCollection<TMessage> Messages { get; }
+        IReadOnlyCollection<TMessage> ErrorMessages { get; }
     }
 }

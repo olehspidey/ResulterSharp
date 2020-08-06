@@ -2,45 +2,27 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Resulter.Abstract;
     using Resulter.Abstract.Generic;
 
     public class Result<TMessage> : ISuccessfulResult, IFailureResult<TMessage>, IResult
     {
-        protected Result()
+        public Result(bool isSuccessful, IEnumerable<TMessage>? errorMessages = null, Exception? exception = null)
         {
+            IsSuccessful = isSuccessful;
+            ErrorMessageList = errorMessages == null ? new List<TMessage>() : errorMessages.ToList();
+            Exception = exception;
         }
 
-        IReadOnlyCollection<TMessage> IFailureResult<TMessage>.Messages => MessagesList;
+        IReadOnlyCollection<TMessage> IFailureResult<TMessage>.ErrorMessages => ErrorMessageList;
 
         Exception? IExceptionResult.Exception => Exception;
 
-        public bool IsSuccessful { get; protected set; }
+        public bool IsSuccessful { get; }
 
-        protected List<TMessage> MessagesList { get; set; } = new List<TMessage>();
+        protected List<TMessage> ErrorMessageList { get; }
 
         protected Exception? Exception { get; set; }
-
-        public static Result<TMessage> CreateFailed(TMessage message, Exception? exception = null)
-            => new Result<TMessage>
-            {
-                MessagesList = new List<TMessage> { message },
-                Exception = exception,
-            };
-
-        public static Result<TMessage> CreateFailed(
-            IEnumerable<TMessage> messages,
-            Exception? exception = null)
-            => new Result<TMessage>
-            {
-                MessagesList = new List<TMessage>(messages),
-                Exception = exception,
-            };
-
-        public static Result<TMessage> CreateSuccess()
-            => new Result<TMessage>
-            {
-                IsSuccessful = true,
-            };
     }
 }
