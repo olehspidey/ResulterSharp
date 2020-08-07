@@ -20,7 +20,7 @@
                 failureResult.ErrorMessages.Concat(errors),
                 failureResult.Exception);
 
-        public static IFailureResult<TMessage> WithError<TMessage>(
+        public static IFailureResult<TMessage> WithErrors<TMessage>(
             this IFailureResult<TMessage> failureResult,
             params TMessage[] errors)
             => WithErrors(failureResult, errors);

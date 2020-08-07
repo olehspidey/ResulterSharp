@@ -14,6 +14,9 @@
         public static HttpResult<TMessage> CreateSuccess<TMessage>(HttpStatusCode statusCode = HttpStatusCode.OK)
             => new HttpResult<TMessage>(true, statusCode);
 
+        public static HttpResult<TData, string> CreateSuccess<TData>(TData data, HttpStatusCode statusCode = HttpStatusCode.OK)
+            => new HttpResult<TData, string>(true, statusCode, data);
+
         public static HttpResult<TData, TMessage> CreateSuccess<TData, TMessage>(TData data, HttpStatusCode statusCode = HttpStatusCode.OK)
             => new HttpResult<TData, TMessage>(true, statusCode, data);
 

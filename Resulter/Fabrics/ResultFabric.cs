@@ -15,6 +15,9 @@
         public static Result<TData, TMessage> CreateSuccess<TData, TMessage>(TData data)
             => new Result<TData, TMessage>(true, data);
 
+        public static Result<TData, string> CreateSuccess<TData>(TData data)
+            => new Result<TData, string>(true, data);
+
         public static Result<string> CreateFailure(string errorMessage, Exception? exception = null)
             => new Result<string>(false, new[] { errorMessage }, exception);
 

@@ -14,6 +14,7 @@
             IEnumerable<TMessage>? errorMessages = null,
             Exception? exception = null)
         {
+            Data = data;
             IsSuccessful = isSuccessful;
             ErrorMessagesList = errorMessages == null ? new List<TMessage>() : errorMessages.ToList();
             Exception = exception;
