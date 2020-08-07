@@ -9,7 +9,7 @@
         <PackageProjectUrl>https://github.com/olehspidey/ResulterSharp</PackageProjectUrl>
         <RepositoryUrl>https://github.com/olehspidey/ResulterSharp</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
-        <PackageVersion>1.0.1</PackageVersion>
+        <PackageVersion>1.0.2</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

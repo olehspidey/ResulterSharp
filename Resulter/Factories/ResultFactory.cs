@@ -1,4 +1,4 @@
-﻿namespace Resulter.Fabrics
+﻿namespace Resulter.Factories
 {
     using System;
     using System.Collections.Generic;

@@ -1,9 +1,8 @@
-﻿namespace Resulter.Http.Fabrics
+﻿namespace Resulter.Http.Factories
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
-    using Resulter.Http;
     using Resulter.Http.Generic;
 
     public static class HttpResultFactory

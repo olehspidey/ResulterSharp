@@ -2,12 +2,11 @@
 {
     using System;
     using System.Net;
-    using Extensions;
-    using Fabrics;
-    using Http;
     using Microsoft.AspNetCore.Mvc;
     using Resulter.AspNetCore;
-    using Resulter.Http.Fabrics;
+    using Resulter.Factories;
+    using Resulter.Http;
+    using Resulter.Http.Factories;
 
     [ApiController]
     [Route("[controller]")]

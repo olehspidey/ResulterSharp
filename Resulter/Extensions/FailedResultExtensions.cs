@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Factories;
     using Resulter.Abstract;
     using Resulter.Abstract.Generic;
-    using Resulter.Fabrics;
 
     public static class FailedResultExtensions
     {

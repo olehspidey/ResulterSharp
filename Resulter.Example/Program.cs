@@ -1,14 +1,18 @@
-﻿namespace Resulter.Example
-{
-    using System;
-    using Extensions;
-    using Resulter.Fabrics;
+﻿using System;
 
+namespace Resulter.Example
+{
     class Program
     {
         private static void Main(string[] args)
         {
-            var result = ResultFabric.CreateSuccess<Program, String>(new Program());
+            var program = new Program();
+            Test((object)program);
+        }
+
+        private static void Test<T>(T t)
+        {
+            var r = t is Program;
         }
     }
 }

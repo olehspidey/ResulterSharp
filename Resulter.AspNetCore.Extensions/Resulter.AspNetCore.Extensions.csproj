@@ -10,16 +10,13 @@
         <PackageProjectUrl>https://github.com/olehspidey/ResulterSharp</PackageProjectUrl>
         <RepositoryUrl>https://github.com/olehspidey/ResulterSharp</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
+        <PackageVersion>1.0.2</PackageVersion>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Resulter.Http\Resulter.Http.csproj" />
-      <ProjectReference Include="..\Resulter\Resulter.csproj" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+      <PackageReference Include="ResulterSharp.Http" Version="1.0.2" />
       <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
