@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Resulter.AspNetCore.Extensions\Resulter.AspNetCore.Extensions.csproj" />
+      <ProjectReference Include="..\Resulter.AspNetCore\Resulter.AspNetCore.csproj" />
       <ProjectReference Include="..\Resulter.Http\Resulter.Http.csproj" />
       <ProjectReference Include="..\Resulter\Resulter.csproj" />
     </ItemGroup>

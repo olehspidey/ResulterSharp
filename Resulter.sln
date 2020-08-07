@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resulter", "Resulter\Result
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resulter.Example", "Resulter.Example\Resulter.Example.csproj", "{BCEF6607-52A9-4373-AAD3-A49522994DAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resulter.AspNetCore.Extensions", "Resulter.AspNetCore.Extensions\Resulter.AspNetCore.Extensions.csproj", "{40B7BA54-989A-4BB2-A8AC-77374F3A3B44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resulter.AspNetCore", "Resulter.AspNetCore\Resulter.AspNetCore.csproj", "{40B7BA54-989A-4BB2-A8AC-77374F3A3B44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resulter.Http", "Resulter.Http\Resulter.Http.csproj", "{ED7E07A8-B364-413E-8011-40463E7A45FA}"
 EndProject
