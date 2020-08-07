@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Resulter.Generic;
 
-    public static class ResultFabric
+    public static class ResultFactory
     {
         public static Result<string> CreateSuccess()
             => new Result<string>(true);

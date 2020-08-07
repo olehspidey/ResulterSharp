@@ -3,10 +3,21 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>ResulterSharp.Http</PackageId>
+        <Authors>Oleg Kokhan</Authors>
+        <PackageProjectUrl>https://github.com/olehspidey/ResulterSharp</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/olehspidey/ResulterSharp</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <PackageVersion>1.0.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Resulter\Resulter.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
 </Project>

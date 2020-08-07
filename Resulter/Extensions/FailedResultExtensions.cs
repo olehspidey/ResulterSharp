@@ -16,7 +16,7 @@
         public static IFailureResult<TMessage> WithErrors<TMessage>(
             this IFailureResult<TMessage> failureResult,
             IEnumerable<TMessage> errors)
-            => ResultFabric.CreateFailure(
+            => ResultFactory.CreateFailure(
                 failureResult.ErrorMessages.Concat(errors),
                 failureResult.Exception);
 
@@ -26,11 +26,11 @@
             => WithErrors(failureResult, errors);
 
         public static ISuccessfulResult ToSuccessfulResult<TMessage>(this IFailureResult<TMessage> failureResult)
-            => ResultFabric.CreateSuccess<TMessage>();
+            => ResultFactory.CreateSuccess<TMessage>();
 
         public static ISuccessfulResult<TData> ToSuccessfulResult<TData, TMessage>(
             this IFailureResult<TMessage> failureResult,
             TData data)
-            => ResultFabric.CreateSuccess<TData, TMessage>(data);
+            => ResultFactory.CreateSuccess<TData, TMessage>(data);
     }
 }

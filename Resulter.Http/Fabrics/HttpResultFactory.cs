@@ -6,7 +6,7 @@
     using Resulter.Http;
     using Resulter.Http.Generic;
 
-    public static class HttpResultFabric
+    public static class HttpResultFactory
     {
         public static HttpResult<string> CreateSuccess(HttpStatusCode statusCode = HttpStatusCode.OK)
             => new HttpResult<string>(true, statusCode);
