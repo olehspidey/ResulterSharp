@@ -79,13 +79,29 @@
         /// <summary>
         /// Throw exception when result is failure and exception is not null.
         /// </summary>
-        /// <param name="result">Exception result.</param>
+        /// <param name="result">Result source.</param>
         /// <exception cref="Exception">Exception from <see cref="result"/>.</exception>
-        /// <returns><see cref="IExceptionResult"/> exception result.</returns>
-        public static IExceptionResult ThrowIfException(this IExceptionResult result)
+        /// <typeparam name="TMessage">Type of error message.</typeparam>
+        /// <returns>Same <see cref="Result{TMessage}"/>.</returns>
+        public static Result<TMessage> ThrowIfException<TMessage>(this Result<TMessage> result)
         {
-            if (result.Exception != null)
-                throw result.Exception;
+            if (result is IExceptionResult exceptionResult && exceptionResult.Exception != null)
+                throw exceptionResult.Exception;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Throw exception when result is failure and exception is not null.
+        /// </summary>
+        /// <param name="result">Result source.</param>
+        /// <typeparam name="TData">Type of data.</typeparam>
+        /// <typeparam name="TMessage">Type of error message.</typeparam>
+        /// <returns>Same <see cref="Result{TData,TMessage}"/>.</returns>
+        public static Result<TData, TMessage> ThrowIfException<TData, TMessage>(this Result<TData, TMessage> result)
+        {
+            if (result is IExceptionResult exceptionResult && exceptionResult.Exception != null)
+                throw exceptionResult.Exception;
 
             return result;
         }
