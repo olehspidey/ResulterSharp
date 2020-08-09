@@ -81,10 +81,13 @@
         /// </summary>
         /// <param name="result">Exception result.</param>
         /// <exception cref="Exception">Exception from <see cref="result"/>.</exception>
-        public static void ThrowIfException(this IExceptionResult result)
+        /// <returns><see cref="IExceptionResult"/> exception result.</returns>
+        public static IExceptionResult ThrowIfException(this IExceptionResult result)
         {
             if (result.Exception != null)
                 throw result.Exception;
+
+            return result;
         }
     }
 }
