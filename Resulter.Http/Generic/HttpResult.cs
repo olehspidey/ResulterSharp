@@ -6,6 +6,11 @@
     using Resulter.Generic;
     using Resulter.Http.Abstract;
 
+    /// <summary>
+    /// Represents the model of http result.
+    /// </summary>
+    /// <typeparam name="TData">Type of data.</typeparam>
+    /// <typeparam name="TMessage">Type of error message.</typeparam>
     public class HttpResult<TData, TMessage> : Result<TData, TMessage>, IHttpResult
     {
         protected internal HttpResult(
@@ -19,6 +24,9 @@
             StatusCode = statusCode;
         }
 
+        /// <summary>
+        /// Gets http status code.
+        /// </summary>
         public HttpStatusCode StatusCode { get; }
     }
 }

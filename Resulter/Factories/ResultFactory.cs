@@ -5,19 +5,19 @@
     using Resulter.Generic;
 
     /// <summary>
-    /// Represents the factory for result object instantiation.
+    /// Represents the factory for <see cref="Result{TMessage}"/> and <see cref="Result{TData,TMessage}"/> result objects instantiation.
     /// </summary>
     public static class ResultFactory
     {
         /// <summary>
-        /// Creates successful result with <see cref="string"/> error messages.
+        /// Creates successful <see cref="Result{TMessage}"/> result with default <see cref="string"/> error messages.
         /// </summary>
         /// <returns>Successful result.</returns>
         public static Result<string> CreateSuccess()
             => new Result<string>(true);
 
         /// <summary>
-        /// Creates successful result.
+        /// Creates successful <see cref="Result{TMessage}"/> result.
         /// </summary>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
         /// <returns>Successful result.</returns>
@@ -25,7 +25,7 @@
             => new Result<TMessage>(true);
 
         /// <summary>
-        /// Creates successful result.
+        /// Creates successful <see cref="Result{TData,TMessage}"/> result.
         /// </summary>
         /// <param name="data">Value of data.</param>
         /// <typeparam name="TData">Type of data.</typeparam>
@@ -35,7 +35,7 @@
             => new Result<TData, TMessage>(true, data);
 
         /// <summary>
-        /// Creates successful result with default <value>string</value> error messages.
+        /// Creates successful <see cref="Result{TData,TMessage}"/> result with default <see cref="string"/> error messages.
         /// </summary>
         /// <param name="data">Value of data.</param>
         /// <typeparam name="TData">Type of data.</typeparam>
@@ -44,7 +44,7 @@
             => new Result<TData, string>(true, data);
 
         /// <summary>
-        /// Creates failure result with default <value>string</value> error messages.
+        /// Creates failure <see cref="Result{TMessage}"/> result with default <see cref="string"/> error messages.
         /// </summary>
         /// <param name="errorMessage">Message that represents error.</param>
         /// <param name="exception">Exception that represents error.</param>
@@ -53,16 +53,16 @@
             => new Result<string>(false, new[] { errorMessage }, exception);
 
         /// <summary>
-        /// Creates failure result with default <value>string</value> error messages.
+        /// Creates failure <see cref="Result{TMessage}"/> result with default <see cref="string"/> error messages.
         /// </summary>
-        /// <param name="errorMessages">Messages that represent errors.</param>
+        /// <param name="errorMessages">Message collection that represent errors.</param>
         /// <param name="exception">Exception that represents error.</param>
         /// <returns>Failure error.</returns>
         public static Result<string> CreateFailure(IEnumerable<string> errorMessages, Exception? exception = null)
             => new Result<string>(false, errorMessages, exception);
 
         /// <summary>
-        /// Creates failure result.
+        /// Creates failure <see cref="Result{TMessage}"/> result.
         /// </summary>
         /// <param name="errorMessage">Message that represents error.</param>
         /// <param name="exception">Exception that represents error.</param>
@@ -72,9 +72,9 @@
             => new Result<TMessage>(false, new[] { errorMessage }, exception);
 
         /// <summary>
-        /// Creates failure result.
+        /// Creates failure <see cref="Result{TMessage}"/> result.
         /// </summary>
-        /// <param name="errorMessages">Messages that represent errors.</param>
+        /// <param name="errorMessages">Message collection that represent errors.</param>
         /// <param name="exception">Exception that represents error.</param>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
         /// <returns>Failure error.</returns>
@@ -82,7 +82,7 @@
             => new Result<TMessage>(false, errorMessages, exception);
 
         /// <summary>
-        /// Creates failure result.
+        /// Creates failure <see cref="Result{TData,TMessage}"/> result.
         /// </summary>
         /// <param name="errorMessage">Message that represents error.</param>
         /// <param name="exception">Exception that represents error.</param>
@@ -93,14 +93,14 @@
             => new Result<TData, TMessage>(false, default!, new[] { errorMessage }, exception);
 
         /// <summary>
-        /// Creates failure result.
+        /// Creates failure <see cref="Result{TData,TMessage}"/> result.
         /// </summary>
-        /// <param name="errorMessage">Message that represents error.</param>
+        /// <param name="errorMessages">Message collection that represents errors.</param>
         /// <param name="exception">Exception that represents error.</param>
         /// <typeparam name="TData">Type of data.</typeparam>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
         /// <returns>Failure error.</returns>
-        public static Result<TData, TMessage> CreateFailure<TData, TMessage>(IEnumerable<TMessage> errorMessage, Exception? exception = null)
-            => new Result<TData, TMessage>(false, default!, errorMessage, exception);
+        public static Result<TData, TMessage> CreateFailure<TData, TMessage>(IEnumerable<TMessage> errorMessages, Exception? exception = null)
+            => new Result<TData, TMessage>(false, default!, errorMessages, exception);
     }
 }

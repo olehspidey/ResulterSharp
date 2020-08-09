@@ -5,6 +5,10 @@
     using System.Net;
     using Resulter.Http.Abstract;
 
+    /// <summary>
+    /// Represents the model of http result.
+    /// </summary>
+    /// <typeparam name="TMessage">Type of error message.</typeparam>
     public class HttpResult<TMessage> : Result<TMessage>, IHttpResult
     {
         public HttpResult(
@@ -17,6 +21,9 @@
             StatusCode = statusCode;
         }
 
+        /// <summary>
+        /// Gets http status code.
+        /// </summary>
         public HttpStatusCode StatusCode { get; }
     }
 }
