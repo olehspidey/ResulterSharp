@@ -11,6 +11,7 @@
         <RepositoryUrl>https://github.com/olehspidey/ResulterSharp</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
         <PackageVersion>1.0.2</PackageVersion>
+        <CodeAnalysisRuleSet>../Custom.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>

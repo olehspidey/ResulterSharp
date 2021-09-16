@@ -1,18 +1,18 @@
-﻿using System;
-
-namespace Resulter.Example
+﻿namespace Resulter.Example
 {
+    using System;
+    using Extensions;
+    using Factories;
+
     class Program
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
-            var program = new Program();
-            Test((object)program);
-        }
+            var r = ResultFactory.CreateFailure<string>("tes", "a");
 
-        private static void Test<T>(T t)
-        {
-            var r = t is Program;
+            if (r.IsFailure(out var f))
+            {
+            }
         }
     }
 }

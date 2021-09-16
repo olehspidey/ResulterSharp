@@ -4,35 +4,35 @@
     using System.Net;
     using Microsoft.AspNetCore.Mvc;
     using Resulter.Abstract.Generic;
-    using Resulter.Extensions;
-    using Resulter.Http;
+    using Extensions;
+    using Http;
     using Resulter.Http.Generic;
 
     public static class HttpResultExtensions
     {
-        public static IActionResult ToActionResult<TMessage>(this HttpResult<TMessage> result)
+        public static IActionResult ToActionResult<TMessage>(this HttpResult<TMessage> resultBase)
         {
-            if (result.IsFailure(out var failureResult))
+            if (resultBase.IsFailure(out var failureResult))
             {
-                return failureResult.MapFailureResultToObjectResult(result.StatusCode);
+                return failureResult.MapFailureResultToObjectResult(resultBase.StatusCode);
             }
 
-            return new StatusCodeResult((int)result.StatusCode);
+            return new StatusCodeResult((int)resultBase.StatusCode);
         }
 
-        public static IActionResult ToActionResult<TData, TMessage>(this HttpResult<TData, TMessage> result)
+        public static IActionResult ToActionResult<TData, TMessage>(this HttpResult<TData, TMessage> resultBase)
         {
-            if (result.IsFailure(out var failureResult))
+            if (resultBase.IsFailure(out var failureResult))
             {
-                return failureResult.MapFailureResultToObjectResult(result.StatusCode);
+                return failureResult.MapFailureResultToObjectResult(resultBase.StatusCode);
             }
 
-            if (result.IsSuccessful(out var data))
+            if (resultBase.IsSuccessful(out var data))
             {
                 return new ObjectResult(data)
                 {
                     DeclaredType = typeof(ISuccessfulResult<TData>),
-                    StatusCode = (int)result.StatusCode,
+                    StatusCode = (int)resultBase.StatusCode,
                 };
             }
 

@@ -1,22 +1,25 @@
-﻿namespace Resulter.Http
+﻿namespace Resulter.Http.Generic
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
-    using Resulter.Http.Abstract;
+    using Resulter.Generic;
+    using Abstract;
 
     /// <summary>
     /// Represents the model of http result.
     /// </summary>
+    /// <typeparam name="TData">Type of data.</typeparam>
     /// <typeparam name="TMessage">Type of error message.</typeparam>
-    public class HttpResult<TMessage> : Result<TMessage>, IHttpResult
+    public class HttpResultBase<TData, TMessage> : Result<TData, TMessage>, IHttpResult
     {
-        public HttpResult(
+        protected internal HttpResultBase(
             bool isSuccessful,
             HttpStatusCode statusCode,
+            TData data = default,
             IEnumerable<TMessage>? errorMessages = null,
             Exception? exception = null)
-            : base(isSuccessful, errorMessages, exception)
+            : base(isSuccessful, data, errorMessages, exception)
         {
             StatusCode = statusCode;
         }

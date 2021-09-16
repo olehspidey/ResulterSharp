@@ -3,22 +3,22 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Resulter.Abstract;
+    using Abstract;
     using Resulter.Abstract.Generic;
 
     /// <summary>
     /// Represents the model of result.
     /// </summary>
     /// <typeparam name="TMessage">Type of error message.</typeparam>
-    public class Result<TMessage> : ISuccessfulResult, IFailureResult<TMessage>, IResult
+    public class ResultBase<TMessage> : ISuccessfulResult, IFailureResult<TMessage>, IResult
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Result{TMessage}"/> class.
+        /// Initializes a new instance of the <see cref="ResultBase{TMessage}"/> class.
         /// </summary>
         /// <param name="isSuccessful">Is result successful.</param>
         /// <param name="errorMessages">List of error messages.</param>
         /// <param name="exception">Error exception.</param>
-        public Result(bool isSuccessful, IEnumerable<TMessage>? errorMessages = null, Exception? exception = null)
+        public ResultBase(bool isSuccessful, IEnumerable<TMessage>? errorMessages = null, Exception? exception = null)
         {
             IsSuccessful = isSuccessful;
             ErrorMessageList = errorMessages == null ? new List<TMessage>() : errorMessages.ToList();

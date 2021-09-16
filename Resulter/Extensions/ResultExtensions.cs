@@ -1,9 +1,9 @@
 ﻿namespace Resulter.Extensions
 {
     using System;
-    using Resulter.Abstract;
+    using Abstract;
+    using Generic;
     using Resulter.Abstract.Generic;
-    using Resulter.Generic;
 
     /// <summary>
     /// Represents extensions for result models.
@@ -14,16 +14,16 @@
         /// Checks if result is successful. Returns true when result is successful else false.
         /// When returns true <see cref="data"/> has "default" value.
         /// </summary>
-        /// <param name="result">Result model.</param>
+        /// <param name="resultBase">Result model.</param>
         /// <param name="data">Result data.</param>
         /// <typeparam name="TData">Type of data.</typeparam>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
         /// <returns>Returns true when result is successful else false.</returns>
-        public static bool IsSuccessful<TData, TMessage>(this Result<TData, TMessage> result, out TData data)
+        public static bool IsSuccessful<TData, TMessage>(this ResultBase<TData, TMessage> resultBase, out TData data)
         {
-            if (((IResult)result).IsSuccessful)
+            if (((IResult)resultBase).IsSuccessful)
             {
-                data = ((ISuccessfulResult<TData>)result).Data;
+                data = ((ISuccessfulResult<TData>)resultBase).Data;
 
                 return true;
             }
@@ -36,16 +36,16 @@
         /// <summary>
         /// Checks if result is failure. Returns true when result is failure else false.
         /// </summary>
-        /// <param name="result">Result model.</param>
+        /// <param name="resultBase">Result model.</param>
         /// <param name="failureResult">Failure result model.</param>
         /// <typeparam name="TData">Type of data.</typeparam>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
         /// <returns>Returns true when result is failure else false.</returns>
-        public static bool IsFailure<TData, TMessage>(this Result<TData, TMessage> result, out IFailureResult<TMessage> failureResult)
+        public static bool IsFailure<TData, TMessage>(this ResultBase<TData, TMessage> resultBase, out IFailureResult<TMessage> failureResult)
         {
-            if (!((IResult)result).IsSuccessful)
+            if (!((IResult)resultBase).IsSuccessful)
             {
-                failureResult = result;
+                failureResult = resultBase;
 
                 return true;
             }
@@ -58,15 +58,15 @@
         /// <summary>
         /// Checks if result is failure. Returns true when result is failure else false.
         /// </summary>
-        /// <param name="result">Result model.</param>
+        /// <param name="resultBase">Result model.</param>
         /// <param name="failureResult">Failure result model.</param>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
         /// <returns>Returns true when result is failure else false.</returns>
-        public static bool IsFailure<TMessage>(this Result<TMessage> result, out IFailureResult<TMessage> failureResult)
+        public static bool IsFailure<TMessage>(this ResultBase<TMessage> resultBase, out IFailureResult<TMessage> failureResult)
         {
-            if (!result.IsSuccessful)
+            if (!resultBase.IsSuccessful)
             {
-                failureResult = result;
+                failureResult = resultBase;
 
                 return true;
             }
@@ -79,31 +79,31 @@
         /// <summary>
         /// Throw exception when result is failure and exception is not null.
         /// </summary>
-        /// <param name="result">Result source.</param>
-        /// <exception cref="Exception">Exception from <see cref="result"/>.</exception>
+        /// <param name="resultBase">Result model.</param>
+        /// <exception cref="Exception">Exception from <see cref="resultBase"/>.</exception>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
-        /// <returns>Same <see cref="Result{TMessage}"/>.</returns>
-        public static Result<TMessage> ThrowIfException<TMessage>(this Result<TMessage> result)
+        /// <returns>Same <see cref="ResultBase{TMessage}"/>.</returns>
+        public static ResultBase<TMessage> ThrowIfException<TMessage>(this ResultBase<TMessage> resultBase)
         {
-            if (result is IExceptionResult exceptionResult && exceptionResult.Exception != null)
+            if (resultBase is IExceptionResult { Exception: { } } exceptionResult)
                 throw exceptionResult.Exception;
 
-            return result;
+            return resultBase;
         }
 
         /// <summary>
         /// Throw exception when result is failure and exception is not null.
         /// </summary>
-        /// <param name="result">Result source.</param>
+        /// <param name="resultBase">Result model.</param>
         /// <typeparam name="TData">Type of data.</typeparam>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
-        /// <returns>Same <see cref="Result{TData,TMessage}"/>.</returns>
-        public static Result<TData, TMessage> ThrowIfException<TData, TMessage>(this Result<TData, TMessage> result)
+        /// <returns>Same <see cref="ResultBase{TData,TMessage}"/>.</returns>
+        public static ResultBase<TData, TMessage> ThrowIfException<TData, TMessage>(this ResultBase<TData, TMessage> resultBase)
         {
-            if (result is IExceptionResult exceptionResult && exceptionResult.Exception != null)
+            if (resultBase is IExceptionResult { Exception: { } } exceptionResult)
                 throw exceptionResult.Exception;
 
-            return result;
+            return resultBase;
         }
     }
 }

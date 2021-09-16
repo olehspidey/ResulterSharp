@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Resulter.Abstract;
+    using Abstract;
+    using Factories;
     using Resulter.Abstract.Generic;
-    using Resulter.Factories;
 
     /// <summary>
     /// Represents extensions for failure results.
@@ -33,7 +33,7 @@
         public static IFailureResult<TMessage> WithErrors<TMessage>(
             this IFailureResult<TMessage> failureResult,
             IEnumerable<TMessage> errors)
-            => ResultFactory.CreateFailure(
+            => ResultFactoryBase.CreateFailure(
                 failureResult.ErrorMessages.Concat(errors),
                 failureResult.Exception);
 
@@ -56,7 +56,7 @@
         /// <typeparam name="TMessage">Type of error message.</typeparam>
         /// <returns>New successful result from failure result.</returns>
         public static ISuccessfulResult ToSuccessfulResult<TMessage>(this IFailureResult<TMessage> failureResult)
-            => ResultFactory.CreateSuccess<TMessage>();
+            => ResultFactoryBase.CreateSuccess<TMessage>();
 
         /// <summary>
         /// Creates new successful result from failure result.
@@ -69,6 +69,6 @@
         public static ISuccessfulResult<TData> ToSuccessfulResult<TData, TMessage>(
             this IFailureResult<TMessage> failureResult,
             TData data)
-            => ResultFactory.CreateSuccess<TData, TMessage>(data);
+            => ResultFactoryBase.CreateSuccess<TData, TMessage>(data);
     }
 }

@@ -2,50 +2,50 @@
 {
     using System.Net;
     using Resulter.Abstract.Generic;
-    using Resulter.Extensions;
+    using Extensions;
     using Resulter.Generic;
-    using Resulter.Http.Generic;
+    using Generic;
 
     /// <summary>
-    /// Represents extensions for <see cref="Result{TMessage}"/> and <see cref="Result{TData,TMessage}"/> results.
+    /// Represents extensions for <see cref="Resulter.ResultBase{TMessage}"/> and <see cref="Resulter.Generic.ResultBase{TData,TMessage}"/> results.
     /// </summary>
     public static class HttpResultExtensions
     {
         /// <summary>
-        /// Converts <see cref="Result{TMessage}"/> to <see cref="HttpResult{TMessage}"/> http result with specific status code.
+        /// Converts <see cref="Resulter.ResultBase{TMessage}"/> to <see cref="HttpResultBase{TMessage}"/> http result with specific status code.
         /// </summary>
-        /// <param name="result">Source result.</param>
+        /// <param name="resultBaseurce result.</param>
         /// <param name="statusCode">Http status code.</param>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
-        /// <returns><see cref="HttpResult{TMessage}"/> http result with specific status code.</returns>
-        public static HttpResult<TMessage> ToHttpResult<TMessage>(this Result<TMessage> result, HttpStatusCode statusCode)
+        /// <returns><see cref="HttpResultBase{TMessage}"/> http result with specific status code.</returns>
+        public static HttpResultBase<TMessage> ToHttpResult<TMessage>(this Result<TMessage> resultBase, HttpStatusCode statusCode)
         {
-            if (result is HttpResult<TMessage> httpResult)
+            if (resultBase is HttpResultBase<TMessage> httpResult)
                 return httpResult;
 
-            var failureResult = (IFailureResult<TMessage>)result;
+            var failureResult = (IFailureResult<TMessage>)resultBase;
 
-            return new HttpResult<TMessage>(result.IsSuccessful, statusCode, failureResult.ErrorMessages, failureResult.Exception);
+            return new HttpResultBase<TMessage>(resultBase.IsSuccessful, statusCode, failureResult.ErrorMessages, failureResult.Exception);
         }
 
         /// <summary>
-        /// Converts <see cref="Result{TData,TMessage}"/> to <see cref="HttpResult{TData,TMessage}"/> http result with specific status code.
+        /// Converts <see cref="Resulter.Generic.ResultBase{TData,TMessage}"/> to <see cref="HttpResultBase{TData,TMessage}"/> http result with specific status code.
         /// </summary>
-        /// <param name="result">Source result.</param>
+        /// <param name="resultBaseurce result.</param>
         /// <param name="statusCode">Http status code.</param>
         /// <typeparam name="TData">Type of data.</typeparam>
         /// <typeparam name="TMessage">Type of error message.</typeparam>
-        /// <returns><see cref="Result{TData,TMessage}"/> http result with specific status code.</returns>
-        public static HttpResult<TData, TMessage> ToHttpResult<TData, TMessage>(
-            this Result<TData, TMessage> result,
+        /// <returns><see cref="Resulter.Generic.ResultBase{TData,TMessage}"/> http result with specific status code.</returns>
+        public static HttpResultBase<TData, TMessage> ToHttpResult<TData, TMessage>(
+            this Result<TData, TMessage> resultBase,
             HttpStatusCode statusCode)
         {
-            if (result is HttpResult<TData, TMessage> httpResult)
+            if (resultBase is HttpResultBase<TData, TMessage> httpResult)
                 return httpResult;
 
-            if (result.IsFailure(out var failureResult))
+            if (resultBase.IsFailure(out var failureResult))
             {
-                return new HttpResult<TData, TMessage>(
+                return new HttpResultBase<TData, TMessage>(
                     false,
                     statusCode,
                     default!,
@@ -53,7 +53,7 @@
                     failureResult.Exception);
             }
 
-            return new HttpResult<TData, TMessage>(true, statusCode, ((ISuccessfulResult<TData>)result).Data);
+            return new HttpResultBase<TData, TMessage>(true, statusCode, ((ISuccessfulResult<TData>)resultBase).Data);
         }
     }
 }
