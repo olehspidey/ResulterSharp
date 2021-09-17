@@ -9,7 +9,7 @@
         <PackageProjectUrl>https://github.com/olehspidey/ResulterSharp</PackageProjectUrl>
         <RepositoryUrl>https://github.com/olehspidey/ResulterSharp</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
-        <PackageVersion>1.0.3</PackageVersion>
+        <PackageVersion>1.0.4</PackageVersion>
         <LangVersion>9</LangVersion>
         <CodeAnalysisRuleSet>../Custom.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
