@@ -21,7 +21,29 @@
         /// <returns>Returns true when result is successful else false.</returns>
         public static bool IsSuccessful<TData, TMessage>(this ResultBase<TData, TMessage> resultBase, out TData data)
         {
-            if (((IResult)resultBase).IsSuccessful)
+            if (resultBase.IsSuccessful)
+            {
+                data = ((ISuccessfulResult<TData>)resultBase).Data;
+
+                return true;
+            }
+
+            data = default!;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if result is successful. Returns true when result is successful else false.
+        /// When returns true <see cref="data"/> has "default" value.
+        /// </summary>
+        /// <param name="resultBase">Result model.</param>
+        /// <param name="data">Result data.</param>
+        /// <typeparam name="TData">Type of data.</typeparam>
+        /// <returns>Returns true when result is successful else false.</returns>
+        public static bool IsSuccessful<TData>(this IResult resultBase, out TData data)
+        {
+            if (resultBase.IsSuccessful)
             {
                 data = ((ISuccessfulResult<TData>)resultBase).Data;
 
@@ -43,7 +65,7 @@
         /// <returns>Returns true when result is failure else false.</returns>
         public static bool IsFailure<TData, TMessage>(this ResultBase<TData, TMessage> resultBase, out IFailureResult<TMessage> failureResult)
         {
-            if (!((IResult)resultBase).IsSuccessful)
+            if (!resultBase.IsSuccessful)
             {
                 failureResult = resultBase;
 
